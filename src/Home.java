@@ -236,6 +236,41 @@ public class Home extends JFrame{
                 new About().setVisible(true);
             }
 	});
+	    JMenu m8 = new JMenu("SEARCH");
+    m8.setForeground(Color.BLUE);
+    menuBar.add(m8);
+    
+    m8.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            JPopupMenu popup = new JPopupMenu();
+    
+            JMenuItem checkPackageItem = new JMenuItem("VIEW PACKAGE");
+            checkPackageItem.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent ae) {
+                    try {
+                        new CheckPackage().setVisible(true);
+                    } catch (Exception e) {
+                    }
+                }
+            });
+            popup.add(checkPackageItem);
+    
+            JMenuItem viewHotelsItem = new JMenuItem("VIEW HOTELS");
+            viewHotelsItem.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent ae) {
+                    try {
+                        new CheckHotels().setVisible(true);
+                    } catch (Exception e) {
+                    }
+                }
+            });
+            popup.add(viewHotelsItem);
+    
+            popup.show(e.getComponent(), 0, m8.getHeight());
+        }
+    });
+        
         
         
         
