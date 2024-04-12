@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package travel.management.system;
-
+import travel.management.system.Payment;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -40,7 +40,7 @@ public class Home extends JFrame{
         JMenuBar menuBar = new JMenuBar();
 	setJMenuBar(menuBar);
 		
-        JMenu m1 = new JMenu("CUSTOMER");
+        JMenu m1 = new JMenu("ADMIN");
         m1.setForeground(Color.BLUE);
 	menuBar.add(m1);
 		
@@ -187,14 +187,15 @@ public class Home extends JFrame{
         m5.setForeground(Color.BLUE);
 	menuBar.add(m5);
         
-        JMenuItem mi12 = new JMenuItem("PAY USING PAYTM");
+        JMenuItem mi12 = new JMenuItem("PAY");
 	m5.add(mi12);
         
-        mi12.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent ae){
-                new Payment().setVisible(true);
-            }
-	});
+    mi12.addActionListener(new ActionListener(){
+        public void actionPerformed(ActionEvent ae){
+            Payment.getInstance().setVisible(true);
+        }
+    });
+    
         
         JMenu m6 = new JMenu("UTILITY");
         m6.setForeground(Color.RED);
