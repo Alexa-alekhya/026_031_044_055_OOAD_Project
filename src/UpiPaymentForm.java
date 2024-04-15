@@ -1,5 +1,4 @@
 package travel.management.system;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -31,6 +30,11 @@ public class UpiPaymentForm extends JFrame {
                 // Logic to process UPI payment
                 JOptionPane.showMessageDialog(null, "UPI payment successful!");
                 dispose(); // Close the payment form after successful payment
+
+                // Open the ViewTicket frame
+                SwingUtilities.invokeLater(() -> {
+                    new ViewTicket().setVisible(true);
+                });
             }
         });
         add(confirmButton);
