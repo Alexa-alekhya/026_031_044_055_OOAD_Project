@@ -47,6 +47,11 @@ public class DebitCardPaymentForm extends JFrame {
                 // Logic to process debit card payment
                 JOptionPane.showMessageDialog(null, "Debit card payment successful!");
                 dispose(); // Close the payment form after successful payment
+
+                // Open the ViewTicket frame
+                SwingUtilities.invokeLater(() -> {
+                    new ViewTicket().setVisible(true);
+                });
             }
         });
         add(confirmButton);
