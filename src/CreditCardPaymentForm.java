@@ -47,6 +47,11 @@ public class CreditCardPaymentForm extends JFrame {
                 // Logic to process credit card payment
                 JOptionPane.showMessageDialog(null, "Credit card payment successful!");
                 dispose(); // Close the payment form after successful payment
+
+                // Open the ViewTicket frame
+                SwingUtilities.invokeLater(() -> {
+                    new ViewTicket().setVisible(true);
+                });
             }
         });
         add(confirmButton);
