@@ -40,29 +40,112 @@ public class Home extends JFrame{
         JMenuBar menuBar = new JMenuBar();
 	setJMenuBar(menuBar);
 		
-        JMenu m1 = new JMenu("ADMIN");
-        m1.setForeground(Color.BLUE);
-	menuBar.add(m1);
+//         JMenu m1 = new JMenu("ADMIN");
+//         m1.setForeground(Color.BLUE);
+//         JMenuItem mi88 = new JMenuItem("ADMIN LOGIN");
+// m1.add(mi88);
+
+// 	menuBar.add(m1);
+//     mi88.addActionListener(new ActionListener(){
+//         public void actionPerformed(ActionEvent ae){
+//             String secretKey = JOptionPane.showInputDialog("Enter Secret Key:");
+//             if (secretKey != null && secretKey.equals("1234")) {
+//                 try {
+//                     new AddCustomer(username).setVisible(true);
+//                 } catch (Exception e) {
+//                     e.printStackTrace();
+//                 }
+//             } else {
+//                 JOptionPane.showMessageDialog(null, "Invalid Secret Key. Access Denied.");
+//             }
+//         }
+//     });
+    
 		
-        JMenuItem mi1 = new JMenuItem("ADD CUSTOMER");
-	m1.add(mi1);
+//     //     JMenuItem mi1 = new JMenuItem("ADD CUSTOMER");
+// 	// m1.add(mi1);
         
+JMenu m1 = new JMenu("ADMIN");
+m1.setForeground(Color.BLUE);
+menuBar.add(m1);
+
+JMenuItem mi88 = new JMenuItem("ADMIN LOGIN");
+m1.add(mi88);
+
+JMenu adminOptions = new JMenu("ADMIN OPTIONS");
+m1.add(adminOptions);
+adminOptions.setEnabled(false); // Disable the submenu initially
+
+mi88.addActionListener(new ActionListener(){
+    public void actionPerformed(ActionEvent ae){
+        String secretKey = JOptionPane.showInputDialog("Enter Secret Key:");
+        if (secretKey != null && secretKey.equals("1234")) {
+            adminOptions.setEnabled(true); // Enable the submenu after successful login
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Secret Key. Access Denied.");
+        }
+    }
+});
+
+JMenuItem deleteCustomer = new JMenuItem("DELETE CUSTOMER");
+adminOptions.add(deleteCustomer);
+
+JMenuItem checkPackage = new JMenuItem("CHECK PACKAGE");
+adminOptions.add(checkPackage);
+
+JMenuItem viewBookedHotels = new JMenuItem("VIEW BOOKED HOTELS");
+adminOptions.add(viewBookedHotels);
+
+deleteCustomer.addActionListener(new ActionListener(){
+    public void actionPerformed(ActionEvent ae){
+        try{
+            new DeleteCustomer().setVisible(true);
+        }catch(Exception e ){}
+    }
+});
+
+checkPackage.addActionListener(new ActionListener(){
+    public void actionPerformed(ActionEvent ae){
+        try{
+            new CheckPackage().setVisible(true);
+        }catch(Exception e ){}
+    }
+});
+
+viewBookedHotels.addActionListener(new ActionListener(){
+    public void actionPerformed(ActionEvent ae){
+        try{
+            new ViewBookedHotel(username).setVisible(true);
+        }catch(Exception e ){}
+    }
+});
+JMenuItem mi1 = new JMenuItem("ADD CUSTOMER DETAIL");
+m1.add(mi1);
+
         JMenuItem mi2 = new JMenuItem("UPDATE CUSTOMER DETAIL");
 	m1.add(mi2);
         
         JMenuItem mi3 = new JMenuItem("VIEW CUSTOMER DETAILS");
 	m1.add(mi3);
         
-        JMenuItem mi4 = new JMenuItem("DELETE CUSTOMER DETAILS");
-	m1.add(mi4);
+    //     JMenuItem mi4 = new JMenuItem("DELETE CUSTOMER DETAILS");
+	// m1.add(mi4);
         
-        mi1.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent ae){
-                try{
-                    new AddCustomer(username).setVisible(true);
-                }catch(Exception e ){}
-            }
-	});
+    //     mi1.addActionListener(new ActionListener(){
+    //         public void actionPerformed(ActionEvent ae){
+    //             try{
+    //                 new AddCustomer(username).setVisible(true);
+    //             }catch(Exception e ){}
+    //         }
+	// });
+    mi1.addActionListener(new ActionListener(){
+        public void actionPerformed(ActionEvent ae){
+            try{
+                new AddCustomer(username).setVisible(true);
+            }catch(Exception e ){}
+        }
+});
+    
         
         mi2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
@@ -80,13 +163,13 @@ public class Home extends JFrame{
             }
 	});
         
-        mi4.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent ae){
-                try{
-                    new DeleteCustomer().setVisible(true);
-                }catch(Exception e ){}
-            }
-	});
+    //     mi4.addActionListener(new ActionListener(){
+    //         public void actionPerformed(ActionEvent ae){
+    //             try{
+    //                 new DeleteCustomer().setVisible(true);
+    //             }catch(Exception e ){}
+    //         }
+	// });
         
         
 		
@@ -190,11 +273,11 @@ public class Home extends JFrame{
         JMenuItem mi12 = new JMenuItem("PAY");
 	m5.add(mi12);
         
-    mi12.addActionListener(new ActionListener(){
-        public void actionPerformed(ActionEvent ae){
-            Payment.getInstance().setVisible(true);
-        }
-    });
+    // mi12.addActionListener(new ActionListener(){
+    //     public void actionPerformed(ActionEvent ae){
+    //         Payment.getInstance().setVisible(true);
+    //     }
+    // });
     
         
         JMenu m6 = new JMenu("UTILITY");
@@ -236,46 +319,121 @@ public class Home extends JFrame{
                 new About().setVisible(true);
             }
 	});
-	    JMenu m8 = new JMenu("SEARCH");
-    m8.setForeground(Color.BLUE);
-    menuBar.add(m8);
+// 	    JMenu m8 = new JMenu("SEARCH");
+//     m8.setForeground(Color.BLUE);
+//     menuBar.add(m8);
     
-    m8.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            JPopupMenu popup = new JPopupMenu();
+//     m8.addMouseListener(new MouseAdapter() {
+//         @Override
+//         public void mouseClicked(MouseEvent e) {
+//             JPopupMenu popup = new JPopupMenu();
     
-            JMenuItem checkPackageItem = new JMenuItem("VIEW PACKAGE");
-            checkPackageItem.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent ae) {
-                    try {
-                        new CheckPackage().setVisible(true);
-                    } catch (Exception e) {
-                    }
+//             JMenuItem checkPackageItem = new JMenuItem("VIEW PACKAGE");
+//             checkPackageItem.addActionListener(new ActionListener() {
+//                 public void actionPerformed(ActionEvent ae) {
+//                     try {
+//                         new CheckPackage().setVisible(true);
+//                     } catch (Exception e) {
+//                     }
+//                 }
+//             });
+//             popup.add(checkPackageItem);
+    
+//             JMenuItem viewHotelsItem = new JMenuItem("VIEW HOTELS");
+//             viewHotelsItem.addActionListener(new ActionListener() {
+//                 public void actionPerformed(ActionEvent ae) {
+//                     try {
+//                         new CheckHotels().setVisible(true);
+//                     } catch (Exception e) {
+//                     }
+//                 }
+//             });
+//             popup.add(viewHotelsItem);
+    
+//             popup.show(e.getComponent(), 0, m8.getHeight());
+//         }
+//     });
+        
+        
+        
+        
+//         setExtendedState(JFrame.MAXIMIZED_BOTH); 
+// 	setVisible(true);
+//         getContentPane().setBackground(Color.WHITE);
+//     }
+// }
+JMenu m8 = new JMenu("SEARCH");
+m8.setForeground(Color.RED);
+menuBar.add(m8);
+
+JMenuItem searchItem = new JMenuItem("VIEW");
+m8.add(searchItem);
+searchItem.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JPopupMenu popup = new JPopupMenu();
+
+        JMenuItem checkPackageItem = new JMenuItem("VIEW PACKAGE");
+        checkPackageItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    new CheckPackage().setVisible(true);
+                } catch (Exception e) {
                 }
-            });
-            popup.add(checkPackageItem);
-    
-            JMenuItem viewHotelsItem = new JMenuItem("VIEW HOTELS");
-            viewHotelsItem.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent ae) {
-                    try {
-                        new CheckHotels().setVisible(true);
-                    } catch (Exception e) {
-                    }
+            }
+        });
+        popup.add(checkPackageItem);
+
+        JMenuItem viewHotelsItem = new JMenuItem("VIEW HOTELS");
+        viewHotelsItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    new CheckHotels().setVisible(true);
+                } catch (Exception e) {
                 }
-            });
-            popup.add(viewHotelsItem);
-    
-            popup.show(e.getComponent(), 0, m8.getHeight());
-        }
-    });
-        
-        
-        
-        
+            }
+        });
+        popup.add(viewHotelsItem);
+
+        popup.show(Home.this, 0, m8.getHeight()); // Display popup menu relative to SEARCH menu
+    }
+});
+
+
+// searchItem.addActionListener(new ActionListener() {
+//     @Override
+//     public void actionPerformed(ActionEvent e) {
+//         JPopupMenu popup = new JPopupMenu();
+
+//         JMenuItem checkPackageItem = new JMenuItem("VIEW PACKAGE");
+//         checkPackageItem.addActionListener(new ActionListener() {
+//             public void actionPerformed(ActionEvent ae) {
+//                 try {
+//                     new CheckPackage().setVisible(true);
+//                 } catch (Exception e) {
+//                 }
+//             }
+//         });
+//         popup.add(checkPackageItem);
+
+//         JMenuItem viewHotelsItem = new JMenuItem("VIEW HOTELS");
+//         viewHotelsItem.addActionListener(new ActionListener() {
+//             public void actionPerformed(ActionEvent ae) {
+//                 try {
+//                     new CheckHotels().setVisible(true);
+//                 } catch (Exception e) {
+//                 }
+//             }
+//         });
+//         popup.add(viewHotelsItem);
+
+//         popup.show(searchItem, 0, searchItem.getHeight());
+//     }
+// });
+
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
 	setVisible(true);
         getContentPane().setBackground(Color.WHITE);
     }
 }
+    
