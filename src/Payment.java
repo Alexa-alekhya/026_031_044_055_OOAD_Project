@@ -2,14 +2,15 @@ package travel.management.system;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import javax.swing.*;
 
 public class Payment extends JFrame {
 
     private static Payment instance;
+    private HashMap<String, PaymentFormPrototype> prototypes;
 
     private Payment() {
         setLayout(null);
@@ -49,6 +50,12 @@ public class Payment extends JFrame {
 
         getContentPane().setBackground(Color.WHITE);
         setVisible(true);
+
+        // Initialize the prototype registry
+        prototypes = new HashMap<>();
+        prototypes.put("credit", new CreditCardPaymentForm());
+        prototypes.put("debit", new DebitCardPaymentForm());
+        prototypes.put("upi", new UpiPaymentForm());
     }
 
     public static Payment getInstance() {
@@ -59,7 +66,6 @@ public class Payment extends JFrame {
     }
 
     private void processPayment(String methodType) {
-        // Open a new window for entering payment details based on the selected method
         switch (methodType.toLowerCase()) {
             case "credit":
                 new CreditCardPaymentForm().setVisible(true);
@@ -75,10 +81,38 @@ public class Payment extends JFrame {
                 JOptionPane.showMessageDialog(this, "Unsupported payment method: " + methodType);
         }
     }
+    
+    
 
     public static void main(String[] args) {
         Payment.getInstance().setVisible(true);
     }
 }
 
+interface PaymentFormPrototype {
+    JFrame clonePaymentForm();
+}
 
+class CreditCardPaymentForm extends JFrame implements PaymentFormPrototype {
+    // Implement Credit Card Payment Form
+    @Override
+    public JFrame clonePaymentForm() {
+        return new CreditCardPaymentForm();
+    }
+}
+
+class DebitCardPaymentForm extends JFrame implements PaymentFormPrototype {
+    // Implement Debit Card Payment Form
+    @Override
+    public JFrame clonePaymentForm() {
+        return new DebitCardPaymentForm();
+    }
+}
+
+class UpiPaymentForm extends JFrame implements PaymentFormPrototype {
+    // Implement UPI Payment Form
+    @Override
+    public JFrame clonePaymentForm() {
+        return new UpiPaymentForm();
+    }
+}
