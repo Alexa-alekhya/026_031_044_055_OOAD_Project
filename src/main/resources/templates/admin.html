@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin Panel</title>
+</head>
+<body>
+<h2>Welcome Admin!</h2>
+<ul>
+  <li><a th:href="@{/manage-packages}">Manage Packages</a></li>
+  <li><a th:href="@{/manage-hotels}">Manage Hotels</a></li>
+  <li><a th:href="@{/edit-booking}">Edit Booking</a></li>
+  <li><a th:href="@{/cancel-booking}">Cancel Booking</a></li>
+  <li><a th:href="@{/customer-list}">View Customers</a></li>
+</ul>
+</body>
+</html>
