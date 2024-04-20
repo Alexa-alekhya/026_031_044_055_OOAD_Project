@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Hotel</title>
+    <style>
+      body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+form {
+  text-align: center;
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+  display: block;
+  margin-bottom: 10px;
+}
+
+select,
+input[type="number"],
+button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#totalPrice {
+  font-weight: bold;
+  color: #333;
+}
+    </style>
+  </head>
+  <body>
+    <h2>Book Hotel</h2>
+    <form action="#" method="post" th:action="@{/book-hotel}">
+      <label for="hotel">Select a hotel:</label>
+      <select id="hotel" name="hotel">
+        <option value="">Select a hotel</option>
+        <!-- Populate options dynamically using Thymeleaf -->
+        <option
+          th:each="hotel : ${hotels}"
+          th:value="${hotel.name}"
+          th:text="${hotel.name}"
+        ></option>
+      </select>
+      <label for="persons">Total Persons:</label>
+      <input type="number" id="persons" name="persons" value="0" />
+      <label for="days">Number of Days:</label>
+      <input type="number" id="days" name="days" value="0" />
+      <label for="ac">AC / Non-AC:</label>
+      <select id="ac" name="ac">
+        <option value="AC">AC</option>
+        <option value="Non-AC">Non-AC</option>
+      </select>
+      <label for="food">Food Included:</label>
+      <select id="food" name="food">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <button type="submit">Check Price</button>
+    </form>
+    <!-- Display total price here -->
+    <div>Total Price: <span id="totalPrice"></span></div>
+
+    <script>
+      // Function to calculate total price
+      function calculateTotalPrice() {
+        var hotelName = document.getElementById("hotel").value;
+        var persons = document.getElementById("persons").value;
+        var days = document.getElementById("days").value;
+        var acOption = document.getElementById("ac").value;
+        var foodOption = document.getElementById("food").value;
+
+// Calculate total price based on selected options
+var total =0;
+          /* Calculate total price based on hotel name, persons, days, acOption, and foodOption */
+          if (hotelName === "Four Seasons Hotel") {
+            total += (1200 * days) + (1900 * persons) + (2200 * (acOption === "AC" ? 1 : 0)) + (foodOption === "Yes" ? 1 : 0);
+        } else if (hotelName === "JW Marriott Hotel") {
+            total += (2000 * days) + (2500 * persons) + (3000 * (acOption === "AC" ? 1 : 0)) + (foodOption === "Yes" ? 1 : 0);
+        }
+        document.getElementById("totalPrice").innerText = "Rs " + total;
+      }
+
+      // Attach the function to the form submission event
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the form from submitting
+          calculateTotalPrice(); // Calculate and display total price
+        });
+    </script>
+       </div>
+       <button type="button" onclick="location.href='/payment';">proceede to pay</button>
+   </div>
+  </body>
+</html>

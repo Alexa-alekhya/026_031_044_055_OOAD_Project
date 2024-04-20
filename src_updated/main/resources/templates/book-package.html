@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Package</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+        select, input[type="text"], input[type="number"], button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .total-price {
+            text-align: center;
+            font-size: 20px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Book Package</h2>
+        <form id="bookingForm">
+            <label for="package">Select a package:</label>
+            <select id="package" name="package" onchange="displayPackageCost()">
+                <option value="gold">Gold</option>
+                <option value="silver">Silver</option>
+                <option value="bronze">Bronze</option>
+            </select>
+            <p id="packageCost"></p>
+            <label for="persons">Number of People:</label>
+            <input type="number" id="persons" name="persons" min="1" value="1" />
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" />
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="1" />
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <label for="location">Location:</label>
+            <select id="location" name="location">
+                <option value="France">France</option>
+                <option value="London">London</option>
+                <option value="Chicago">Chicago</option>
+                <option value="Singapore">Singapore</option>
+                <option value="Malaysia">Malaysia</option>
+                <option value="Japan">Japan</option>
+                <option value="Thailand">Thailand</option>
+            </select>
+            <button type="button" onclick="bookPackage()">Book Package</button>
+        </form>
+        <!-- Display booked package details here -->
+        <div id="bookedPackage" style="display: none;">
+            <h3>Package Booked:</h3>
+            <p id="bookedDetails"></p>
+            <p class="total-price" id="totalPrice"></p>
+        </div>
+        <button type="button" onclick="location.href='/book-hotel';">Book Hotel</button>
+    </div>
+
+    <script>
+        function displayPackageCost() {
+            var packageSelect = document.getElementById("package");
+            var selectedPackage = packageSelect.options[packageSelect.selectedIndex].value;
+            var packageCostElement = document.getElementById("packageCost");
+            switch (selectedPackage) {
+                case "gold":
+                    packageCostElement.innerText = "Package Cost: Rs 80,000";
+                    break;
+                case "silver":
+                    packageCostElement.innerText = "Package Cost: Rs 70,000";
+                    break;
+                case "bronze":
+                    packageCostElement.innerText = "Package Cost: Rs 60,000";
+                    break;
+                default:
+                    packageCostElement.innerText = "";
+            }
+        }
+
+        function bookPackage() {
+            var packageName = document.getElementById("package").value;
+            var persons = document.getElementById("persons").value;
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            var gender = document.getElementById("gender").value;
+            var location = document.getElementById("location").value;
+
+            // Calculate total cost based on package and number of people
+            var totalPrice = calculateTotalPrice(packageName, persons);
+
+            // Prepare package details
+            var packageDetails = {
+                "Package": packageName,
+                "Persons": persons,
+                "Name": name,
+                "Age": age,
+                "Gender": gender,
+                "Location": location
+            };
+
+            // Display booked package details
+            //document.getElementById("bookedDetails").innerText = JSON.stringify(packageDetails);
+            document.getElementById("totalPrice").innerText = "Total Price: Rs " + totalPrice;
+            document.getElementById("bookedPackage").style.display = "block";
+        }
+
+        function calculateTotalPrice(packageName, persons) {
+            var price;
+            switch (packageName) {
+                case "gold":
+                    price = 80000;
+                    break;
+                case "silver":
+                    price = 70000;
+                    break;
+                case "bronze":
+                    price = 60000;
+                    break;
+                default:
+                    price = 0;
+            }
+            return price * persons;
+        }
+    </script>
+</body>
+</html>

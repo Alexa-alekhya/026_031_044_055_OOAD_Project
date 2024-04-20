@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    #adminOptions {
+      list-style-type: none;
+      padding: 0;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #adminOptions li {
+      margin-bottom: 10px;
+    }
+
+    #adminOptions a {
+      text-decoration: none;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    #adminOptions a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Welcome Admin!</h2>
+  <form id="secretKeyForm">
+    <label for="secretKey">Enter Secret Key:</label>
+    <input type="password" id="secretKey" name="secretKey">
+    <button type="submit">Submit</button>
+  </form>
+  <ul id="adminOptions" style="display: none;">
+    <li><a th:href="@{/Customer/delete}" class="button">Delete Customer</a></li>
+    <li><a th:href="@{/Customer/list}" class="button">View Customers</a></li>
+  </ul>
+</div>
+
+<script>
+  document.getElementById("secretKeyForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+    var secretKey = document.getElementById("secretKey").value;
+    if (secretKey === "1234") {
+      document.getElementById("secretKeyForm").style.display = "none"; // Hide the form
+      document.getElementById("adminOptions").style.display = "block"; // Show the admin options
+    } else {
+      alert("Invalid secret key! Access denied.");
+    }
+  });
+</script>
+</body>
+</html>
