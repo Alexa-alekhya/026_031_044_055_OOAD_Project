@@ -1,5 +1,5 @@
 package tms.demo.model;
-
+     
 public class Hotel {
     private String name;
     private String costPerDay;
