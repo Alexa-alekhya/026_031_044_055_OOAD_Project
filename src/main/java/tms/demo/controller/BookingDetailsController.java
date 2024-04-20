@@ -25,6 +25,7 @@
 
 // // Pass the booking details to the view
 // model.addAttribute("bookingDetails", bookingDetails);
+//
 
 // return "booked-package";
 // }
