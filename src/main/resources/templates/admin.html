@@ -1,16 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      text-align: center;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
 <h2>Welcome Admin!</h2>
 <ul>
-  <li><a th:href="@{/manage-packages}">Manage Packages</a></li>
-  <li><a th:href="@{/manage-hotels}">Manage Hotels</a></li>
-  <li><a th:href="@{/edit-booking}">Edit Booking</a></li>
-  <li><a th:href="@{/cancel-booking}">Cancel Booking</a></li>
-  <li><a th:href="@{/customer-list}">View Customers</a></li>
+  <li><a th:href="@{/Customer/delete}" class="button">Delete Customer</a></li>
+  <li><a th:href="@{/Customer/list}" class="button">View Customers</a></li>
 </ul>
 </body>
 </html>
