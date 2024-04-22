@@ -30,6 +30,7 @@ public class PackageController {
 
         // For simplicity, let's assume the booking is successful and redirect to book
         // hotel
+        //
         return "redirect:/book-hotel"; // Redirect to book hotel page
     }
 }
